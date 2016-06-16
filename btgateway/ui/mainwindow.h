@@ -27,8 +27,10 @@ public slots:
 
 private slots:
     void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
+
     void on_actionAppQuit_triggered();
     void on_actionAppVersion_triggered();
+
     void on_actionCrashPureCallCrash_triggered();
     void on_actionCrashInvalidParamCrash_triggered();
     void on_actionCrashDerefZeroCrash_triggered();
@@ -38,6 +40,14 @@ private slots:
     void on_actionCrashExit_triggered();
     void on_actionCrashExitProcess_triggered();
     void on_actionCrashTerminateProcess_triggered();
+
+    void on_actionBtStart_triggered();
+    void on_actionBtStop_triggered();
+    void on_actionBtConfig_triggered();
+
+    void on_actionNetStart_triggered();
+    void on_actionNetStop_triggered();
+
 private:
     void closeEvent(QCloseEvent* event) override;
     void createTrayIcon();

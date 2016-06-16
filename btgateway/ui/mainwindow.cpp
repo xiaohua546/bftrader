@@ -4,6 +4,7 @@
 #include "gatewaymgr.h"
 #include "logger.h"
 #include "profile.h"
+#include "rpcservice.h"
 #include "servicemgr.h"
 #include "tablewidget_helper.h"
 #include "ui_mainwindow.h"
@@ -16,12 +17,20 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
 
     setWindowTitle(Profile::appName());
-    icon_ = QIcon(":/images/heart.png");
+    icon_ = QIcon(":/images/gateway.png");
     setWindowIcon(icon_);
 
     //设置trayicon
     this->createActions();
     this->createTrayIcon();
+
+    // ui actions
+    ui->actionBtStart->setEnabled(true);
+    ui->actionBtConfig->setEnabled(true);
+    ui->actionBtStop->setEnabled(false);
+
+    ui->actionNetStart->setEnabled(true);
+    ui->actionNetStop->setEnabled(false);
 
     //设置列=
     table_col_ << "when"
@@ -192,3 +201,46 @@ void MainWindow::on_actionCrashTerminateProcess_triggered()
 {
     ::TerminateProcess(::GetCurrentProcess(), 1);
 }
+
+void MainWindow::on_actionBtStart_triggered()
+{
+    //更新ui
+    ui->actionBtStart->setEnabled(false);
+    ui->actionBtConfig->setEnabled(false);
+    ui->actionBtStop->setEnabled(true);
+
+    QMetaObject::invokeMethod(g_sm->gatewayMgr(), "start", Qt::QueuedConnection);
+
+}
+
+void MainWindow::on_actionBtStop_triggered()
+{
+    //更新ui
+    ui->actionBtStart->setEnabled(true);
+    ui->actionBtConfig->setEnabled(true);
+    ui->actionBtStop->setEnabled(false);
+
+    QMetaObject::invokeMethod(g_sm->gatewayMgr(), "stop", Qt::QueuedConnection);
+}
+
+//TODO(hege): do it
+void MainWindow::on_actionBtConfig_triggered()
+{
+    BfDebug(__FUNCTION__);
+}
+
+void MainWindow::on_actionNetStart_triggered()
+{
+    ui->actionNetStart->setEnabled(false);
+    ui->actionNetStop->setEnabled(true);
+    QMetaObject::invokeMethod(g_sm->rpcService(), "start", Qt::QueuedConnection);
+}
+
+void MainWindow::on_actionNetStop_triggered()
+{
+    ui->actionNetStart->setEnabled(true);
+    ui->actionNetStop->setEnabled(false);
+    QMetaObject::invokeMethod(g_sm->rpcService(), "stop", Qt::QueuedConnection);
+}
+
+

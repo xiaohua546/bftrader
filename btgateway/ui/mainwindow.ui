@@ -56,7 +56,25 @@
     <addaction name="actionAppVersion"/>
     <addaction name="menu_NO_MONEY"/>
    </widget>
+   <widget class="QMenu" name="menuBacktest">
+    <property name="title">
+     <string>backtest</string>
+    </property>
+    <addaction name="actionBtStart"/>
+    <addaction name="actionBtStop"/>
+    <addaction name="separator"/>
+    <addaction name="actionBtConfig"/>
+   </widget>
+   <widget class="QMenu" name="menuNet">
+    <property name="title">
+     <string>net</string>
+    </property>
+    <addaction name="actionNetStart"/>
+    <addaction name="actionNetStop"/>
+   </widget>
    <addaction name="menuApp"/>
+   <addaction name="menuBacktest"/>
+   <addaction name="menuNet"/>
    <addaction name="menuAbout"/>
   </widget>
   <action name="actionAppQuit">
@@ -112,6 +130,31 @@
   <action name="actionCrashTerminateProcess">
    <property name="text">
     <string>Crash_TerminateProcess</string>
+   </property>
+  </action>
+  <action name="actionBtStart">
+   <property name="text">
+    <string>btStart</string>
+   </property>
+  </action>
+  <action name="actionBtStop">
+   <property name="text">
+    <string>btStop</string>
+   </property>
+  </action>
+  <action name="actionNetStart">
+   <property name="text">
+    <string>netStart</string>
+   </property>
+  </action>
+  <action name="actionNetStop">
+   <property name="text">
+    <string>netStop</string>
+   </property>
+  </action>
+  <action name="actionBtConfig">
+   <property name="text">
+    <string>btConfig</string>
    </property>
   </action>
  </widget>

@@ -3,7 +3,11 @@
 
 #include <QObject>
 
-//IO
+namespace grpc {
+class Server;
+}
+
+// RPC
 class RpcService : public QObject {
     Q_OBJECT
 public:
@@ -14,8 +18,15 @@ public:
 signals:
 
 public slots:
+    void start();
+    void stop();
+
+private slots:
+    void onGatewayThreadStarted();
 
 private:
+    QThread* gatewayThread_ = nullptr;
+    grpc::Server* grpcServer_ = nullptr;
 };
 
 #endif // RPCSERVICE_H
