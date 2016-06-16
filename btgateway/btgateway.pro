@@ -35,6 +35,7 @@ FORMS    += ui/mainwindow.ui
 include(../base/base.pri)
 include(../sdk/sdk.pri)
 include(../third_party/breakpad.pri)
+include(../third_party/leveldb.pri)
 include(../third_party/mhook.pri)
 include(../third_party/grpc.pri)
 
