@@ -35,8 +35,6 @@ FORMS    += ui/mainwindow.ui
 include(../base/base.pri)
 include(../third_party/breakpad.pri)
 include(../third_party/mhook.pri)
-include(../third_party/ctp.pri)
-include(../third_party/leveldb.pri)
 
 RESOURCES += \
     systray.qrc

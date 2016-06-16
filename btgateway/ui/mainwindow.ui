@@ -56,30 +56,7 @@
     <addaction name="actionAppVersion"/>
     <addaction name="menu_NO_MONEY"/>
    </widget>
-   <widget class="QMenu" name="menuThread">
-    <property name="title">
-     <string>thread</string>
-    </property>
-    <addaction name="actionThreadExternal"/>
-   </widget>
-   <widget class="QMenu" name="menuDb">
-    <property name="title">
-     <string>db</string>
-    </property>
-    <addaction name="actionDbOpen"/>
-    <addaction name="actionDbInit"/>
-    <addaction name="actionDbClose"/>
-   </widget>
-   <widget class="QMenu" name="menuCtp">
-    <property name="title">
-     <string>ctp</string>
-    </property>
-    <addaction name="actionCtpVersion"/>
-   </widget>
    <addaction name="menuApp"/>
-   <addaction name="menuThread"/>
-   <addaction name="menuDb"/>
-   <addaction name="menuCtp"/>
    <addaction name="menuAbout"/>
   </widget>
   <action name="actionAppQuit">
@@ -135,31 +112,6 @@
   <action name="actionCrashTerminateProcess">
    <property name="text">
     <string>Crash_TerminateProcess</string>
-   </property>
-  </action>
-  <action name="actionCtpVersion">
-   <property name="text">
-    <string>ctpVersion</string>
-   </property>
-  </action>
-  <action name="actionDbOpen">
-   <property name="text">
-    <string>dbOpen</string>
-   </property>
-  </action>
-  <action name="actionDbInit">
-   <property name="text">
-    <string>dbInit</string>
-   </property>
-  </action>
-  <action name="actionDbClose">
-   <property name="text">
-    <string>dbClose</string>
-   </property>
-  </action>
-  <action name="actionThreadExternal">
-   <property name="text">
-    <string>threadExternal</string>
    </property>
   </action>
  </widget>

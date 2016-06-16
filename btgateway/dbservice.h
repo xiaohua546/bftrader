@@ -2,9 +2,6 @@
 
 #include <QObject>
 
-namespace leveldb {
-class DB;
-}
 class DbService : public QObject {
     Q_OBJECT
 public:
@@ -15,10 +12,7 @@ public:
 signals:
 
 public slots:
-    void dbOpen();
-    void dbInit();
-    void dbClose();
+
 
 private:
-    leveldb::DB* db_ = nullptr;
 };

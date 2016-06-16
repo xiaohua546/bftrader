@@ -4,12 +4,9 @@
 #include "gatewaymgr.h"
 #include "logger.h"
 #include "profile.h"
-#include "runextensions.h"
 #include "servicemgr.h"
 #include "tablewidget_helper.h"
 #include "ui_mainwindow.h"
-#include <QtConcurrentRun>
-#include <functional>
 #include <windows.h>
 
 MainWindow::MainWindow(QWidget* parent)
@@ -194,52 +191,4 @@ void MainWindow::on_actionCrashExitProcess_triggered()
 void MainWindow::on_actionCrashTerminateProcess_triggered()
 {
     ::TerminateProcess(::GetCurrentProcess(), 1);
-}
-
-void MainWindow::on_actionThreadExternal_triggered()
-{
-    QFuture<void> future1 = QtConcurrent::run(this, &MainWindow::runOnExternal);
-    QFuture<void> future2 = QtConcurrent::run(std::bind(&MainWindow::runOnExternal, this));
-    QFuture<void> future3 = QtConcurrent::run(&MainWindow::runOnExternalEx, this);
-    std::function<void(QFutureInterface<void>&)> fn = std::bind(&MainWindow::runOnExternalEx, this, std::placeholders::_1);
-    QFuture<void> future4 = QtConcurrent::run(fn);
-
-    Q_UNUSED(future1);
-    Q_UNUSED(future2);
-    Q_UNUSED(future3);
-    Q_UNUSED(future4);
-}
-
-void MainWindow::runOnExternal()
-{
-    g_sm->checkCurrentOn(ServiceMgr::EXTERNAL);
-    BfInfo(__FUNCTION__);
-}
-
-void MainWindow::runOnExternalEx(QFutureInterface<void>& future)
-{
-    g_sm->checkCurrentOn(ServiceMgr::EXTERNAL);
-    BfInfo(__FUNCTION__);
-
-    future.reportFinished();
-}
-
-void MainWindow::on_actionCtpVersion_triggered()
-{
-    QMetaObject::invokeMethod(g_sm->gatewayMgr(), "showVersion", Qt::QueuedConnection);
-}
-
-void MainWindow::on_actionDbOpen_triggered()
-{
-    QMetaObject::invokeMethod(g_sm->dbService(), "dbOpen", Qt::QueuedConnection);
-}
-
-void MainWindow::on_actionDbInit_triggered()
-{
-    QMetaObject::invokeMethod(g_sm->dbService(), "dbInit", Qt::QueuedConnection);
-}
-
-void MainWindow::on_actionDbClose_triggered()
-{
-    QMetaObject::invokeMethod(g_sm->dbService(), "dbClose", Qt::QueuedConnection);
 }

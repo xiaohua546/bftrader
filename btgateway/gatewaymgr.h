@@ -13,7 +13,6 @@ public:
 signals:
 
 public slots:
-    void showVersion();
 };
 
 #endif // GATEWAYMGR_H
