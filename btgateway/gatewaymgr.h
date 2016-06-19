@@ -4,6 +4,8 @@
 #include "bfgateway.pb.h"
 
 #include <QObject>
+#include <QMap>
+#include <atomic>
 
 using namespace bfgateway;
 
@@ -59,6 +61,19 @@ public slots:
     void queryPosition();
     void cancelOrder(const BfCancelOrderReq& req);
     void queryOrders();
+
+private:
+    void resetData();
+    int getOrderId();
+private:
+    std::atomic_int32_t orderId_ = 0;
+    int tradeId_ = 0;
+    BfAccountData account_;
+    QMap<QString,BfPositionData*> positions_;
+    QMap<QString,BfOrderData*> orders_;
+    QMap<QString,BfTradeData*> trades_;
+    QStringList symbol_my_;
+    QStringList symbol_all_;
 };
 
 #endif // GATEWAYMGR_H
